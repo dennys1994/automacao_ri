@@ -13,18 +13,18 @@ def procurar_residenciais(nome_residencial, especifico=False, contenha=False):
         return
 
     # Abrindo a janela de matrícula
-    if not localizar_e_clicar('fotos/matricula-selecao.png', "Label Matrículas para selecionar opções", reiniciar_com_esc=True):
+    coordenadas_matricula = localizar_e_clicar('fotos/matricula-selecao.png', "Label Matrículas para selecionar opções", reiniciar_com_esc=True)
+    if not coordenadas_matricula:
         return
 
-    # Movendo o mouse para exibir opções específicas
+    # Clique no centro da imagem localizada
     try:
-        print("🖱️ Movendo o mouse para exibir opções específicas...")
-        x, y = pyautogui.position()
-        pyautogui.moveTo(x + 190, y + 130, duration=0.5)
-        pyautogui.click()
+        print("🖱️ Clicando no centro da imagem localizada para exibir opções específicas...")
+        x, y = coordenadas_matricula  # Coordenadas do centro da imagem localizada
+        pyautogui.click(x, y)  # Clique direto no centro
         time.sleep(0.5)
     except Exception as e:
-        print(f"⚠️ Erro ao mover o mouse: {e}")
+        print(f"⚠️ Erro ao clicar no centro da imagem: {e}")
         return
 
     # Selecionando opções específicas ou "contenha"
@@ -54,7 +54,7 @@ def procurar_residenciais(nome_residencial, especifico=False, contenha=False):
 
     print("✅ Residencial extraído com sucesso! Chamando função para salvar.")
     salvar_residenciais(nome_residencial)
-
+    
 def procurar_varios_residenciais():
     # Lista de residenciais para busca
     residenciais_especificos = [
