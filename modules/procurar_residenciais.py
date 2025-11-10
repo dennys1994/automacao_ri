@@ -18,11 +18,13 @@ def procurar_residenciais(nome_residencial, especifico=False, contenha=False):
         return
 
     # Clique no centro da imagem localizada
+    input("Pressione [ESPAÇO] e depois ENTER para continuar...")
     try:
         print("🖱️ Clicando no centro da imagem localizada para exibir opções específicas...")
-        x, y = coordenadas_matricula  # Coordenadas do centro da imagem localizada
-        pyautogui.click(x, y)  # Clique direto no centro
-        time.sleep(0.5)
+        x, y = pyautogui.position()
+        pyautogui.moveTo(x + 190, y + 130, duration=0.1)
+        pyautogui.PAUSE = 0.3
+        pyautogui.click()
     except Exception as e:
         print(f"⚠️ Erro ao clicar no centro da imagem: {e}")
         return
@@ -54,7 +56,7 @@ def procurar_residenciais(nome_residencial, especifico=False, contenha=False):
 
     print("✅ Residencial extraído com sucesso! Chamando função para salvar.")
     salvar_residenciais(nome_residencial)
-    
+
 def procurar_varios_residenciais():
     # Lista de residenciais para busca
     residenciais_especificos = [

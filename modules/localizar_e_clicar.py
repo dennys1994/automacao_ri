@@ -3,7 +3,7 @@ import time
 
 def localizar_e_clicar(imagem, descricao, tentativas=5, pausa=0.5, reiniciar_com_esc=False):
     """
-    Localiza e clica em uma imagem na tela.
+    Localiza e clica no centro de uma imagem na tela.
     
     Args:
         imagem (str): Caminho para a imagem a ser localizada.
@@ -20,8 +20,10 @@ def localizar_e_clicar(imagem, descricao, tentativas=5, pausa=0.5, reiniciar_com
             print(f"🔍 Tentativa {tentativa}/{tentativas} para localizar: {descricao}")
             localizacao = pyautogui.locateOnScreen(imagem, confidence=0.8)
             if localizacao:
-                print(f"✅ {descricao} localizada! Clicando na posição: {localizacao}")
-                pyautogui.click(localizacao)
+                # Calcula o centro da imagem localizada
+                x, y = pyautogui.center(localizacao)
+                print(f"✅ {descricao} localizada! Clicando no centro: ({x}, {y})")
+                pyautogui.click(x, y)  # Clique no centro da imagem
                 time.sleep(pausa)  # Pausa após o clique
                 return True
             else:
