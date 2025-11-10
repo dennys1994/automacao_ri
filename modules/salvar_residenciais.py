@@ -17,6 +17,7 @@ def salvar_residenciais(nome_residencial):
             button_salvar_listagem = pyautogui.locateOnScreen('fotos/salvar.png', confidence=0.9)
             if button_salvar_listagem:
                 pyautogui.press('enter')
+                pyautogui.press('enter')
                 break
         except:
             pyautogui.PAUSE = 0.3

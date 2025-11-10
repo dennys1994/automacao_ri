@@ -18,13 +18,17 @@ def procurar_residenciais(nome_residencial, especifico=False, contenha=False):
         return
 
     # Clique no centro da imagem localizada
-    input("Pressione [ESPAÇO] e depois ENTER para continuar...")
     try:
         print("🖱️ Clicando no centro da imagem localizada para exibir opções específicas...")
         x, y = pyautogui.position()
-        pyautogui.moveTo(x + 190, y + 130, duration=0.1)
+        pyautogui.moveTo(160, 166, duration=0.1)
         pyautogui.PAUSE = 0.3
         pyautogui.click()
+        print("🔽 Fazendo scroll para baixo até o máximo...")
+        pyautogui.moveTo(353, 299, duration=0.1)
+        pyautogui.click()
+        pyautogui.click()  
+        pyautogui.click()               
     except Exception as e:
         print(f"⚠️ Erro ao clicar no centro da imagem: {e}")
         return
